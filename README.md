@@ -1,6 +1,76 @@
 # eventos-chetos
 Plataforma para eventos
 
+## 🚀 Configuración de Entorno de Desarrollo
+
+### Requisitos
+
+- **Docker** y **Docker Compose** instalados
+- **Git** para clonar el repositorio
+- Permisos de administrador/sudo para configurar hosts locales
+
+### Instalación y Ejecución
+
+1. **Clonar el repositorio**
+```bash
+git clone <repository-url>
+cd eventos-chetos
+```
+
+2. **Configurar host local (opcional pero recomendado)**
+
+**Linux/Mac:**
+```bash
+./setup-hosts-unix.sh
+```
+
+**Windows (ejecutar como Administrador):**
+```cmd
+setup-hosts-windows.bat
+```
+
+3. **Levantar servicios**
+```bash
+docker-compose up --build
+```
+
+### Acceso a la Aplicación
+
+- **Aplicación Web:** 
+  - http://localhost
+  - http://eventos-chetos.local (si configuraste el host)
+- **API Spring Boot:** http://localhost:8080
+- **Base de datos PostgreSQL:** localhost:5432
+  - Database: `eventos_db`
+  - Usuario: `eventos_user`
+  - Contraseña: `eventos_password`
+
+### Arquitectura del Proyecto
+
+```
+eventos-chetos/
+├── App/                    # Aplicación Spring Boot
+├── nginx/                  # Configuración Nginx
+├── docker-compose.yml      # Orquestación de servicios
+├── Dockerfile             # Build para producción
+├── Dockerfile.dev         # Build para desarrollo (hot reload)
+└── setup-hosts-*.*        # Scripts configuración hosts
+```
+
+### Servicios Docker
+
+- **postgres**: Base de datos PostgreSQL 15
+- **spring-app**: Aplicación Spring Boot con hot reload
+- **nginx**: Proxy reverso y servidor web
+
+### Desarrollo
+
+El entorno está configurado para desarrollo con:
+- ✅ Hot reload automático (Spring Boot DevTools)
+- ✅ Logs detallados (DEBUG level)
+- ✅ Base de datos persistente
+- ✅ Proxy reverso con Nginx
+
 # Historias de Usuario - App de Eventos
 
 ## Autenticación
